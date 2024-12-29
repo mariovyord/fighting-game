@@ -16,7 +16,7 @@ A simple 2D fighting game created using the Canvas API and vanilla JavaScript.
 - Movement: Arrow Keys
 - Attack: Shift
 
-## How to Run
+## How to Run`
 
 Clone this repository:
 
