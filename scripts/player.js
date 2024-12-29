@@ -27,7 +27,7 @@ export class Player {
       this.ctx,
       "../assets/images/sword.png",
       2
-    ); // Sword image with scale 1
+    ); // Create a new sword
 
     // Player image loading
     const image = new Image();
@@ -60,7 +60,7 @@ export class Player {
     // Sword attack logic
     if (this.isAttacking) {
       this.sword.rotation += Math.PI / 36; // Rotate the sword during the attack
-      if (this.sword.rotation >= Math.PI / 2) {
+      if (this.sword.rotation >= Math.PI / 4) {
         this.sword.rotation = 0; // Reset rotation
         this.isAttacking = false; // End attack
       }
@@ -97,7 +97,7 @@ export class Player {
   }
 
   /**
-   * Draws the player and their sword on the this.canvas.
+   * Draws the player and their sword on the canvas.
    */
   draw() {
     this.ctx.save();

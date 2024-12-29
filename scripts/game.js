@@ -76,49 +76,49 @@ export class Game {
 
     // Player 1 controls (Arrow keys)
     if (this.keys["ArrowLeft"]) {
-      this.player1.velocity.x = -5; // Move left
-      this.player1.rotation = Math.PI; // Face left
-    } else if (this.keys["ArrowRight"]) {
-      this.player1.velocity.x = 5; // Move right
-      this.player1.rotation = 0; // Face right
-    } else {
-      this.player1.velocity.x = 0; // Stop horizontal movement
-    }
-
-    if (this.keys["ArrowUp"]) {
-      if (this.player1.position.y + this.player1.height / 2 >= this.floorY) {
-        this.player1.velocity.y = -12; // Jump
-      }
-    }
-
-    if (this.keys["ArrowDown"]) {
-      this.player1.velocity.y += 1; // Accelerate downward
-    }
-
-    // Player 2 controls (WASD keys)
-    if (this.keys["a"]) {
-      this.player2.velocity.x = -5; // Move left
+      this.player2.velocity.x = -4; // Move left
       this.player2.rotation = Math.PI; // Face left
-    } else if (this.keys["d"]) {
-      this.player2.velocity.x = 5; // Move right
+    } else if (this.keys["ArrowRight"]) {
+      this.player2.velocity.x = 4; // Move right
       this.player2.rotation = 0; // Face right
     } else {
       this.player2.velocity.x = 0; // Stop horizontal movement
     }
 
-    if (this.keys["w"]) {
+    if (this.keys["ArrowUp"]) {
       if (this.player2.position.y + this.player2.height / 2 >= this.floorY) {
         this.player2.velocity.y = -12; // Jump
       }
     }
 
-    if (this.keys["s"]) {
+    if (this.keys["ArrowDown"]) {
       this.player2.velocity.y += 1; // Accelerate downward
     }
 
+    // Player 2 controls (WASD keys)
+    if (this.keys["a"]) {
+      this.player1.velocity.x = -4; // Move left
+      this.player1.rotation = Math.PI; // Face left
+    } else if (this.keys["d"]) {
+      this.player1.velocity.x = 4; // Move right
+      this.player1.rotation = 0; // Face right
+    } else {
+      this.player1.velocity.x = 0; // Stop horizontal movement
+    }
+
+    if (this.keys["w"]) {
+      if (this.player1.position.y + this.player1.height / 2 >= this.floorY) {
+        this.player1.velocity.y = -12; // Jump
+      }
+    }
+
+    if (this.keys["s"]) {
+      this.player1.velocity.y += 1; // Accelerate downward
+    }
+
     // Trigger sword attack
-    if (this.keys["Shift"]) this.player1.attack(this.player2); // Player 1 attacks Player 2
-    if (this.keys[" "]) this.player2.attack(this.player1); // Player 2 attacks Player 1
+    if (this.keys[" "]) this.player1.attack(this.player2); // Player 2 attacks Player 1
+    if (this.keys["Shift"]) this.player2.attack(this.player1); // Player 1 attacks Player 2
 
     // Update players
     this.player1.update();
@@ -176,6 +176,7 @@ export class Game {
    * @param {number} x - The x-coordinate where the health bar will be drawn.
    */
   drawHealthBar(player, x) {
+    this.ctx.save();
     this.ctx.fillStyle = "black";
     this.ctx.fillRect(x, 20, 200, 20); // Background of the health bar
     this.ctx.fillStyle = "red";
@@ -183,6 +184,7 @@ export class Game {
     this.ctx.fillStyle = "white";
     this.ctx.font = "14px Arial";
     this.ctx.fillText(`${player.name}: ${player.health} HP`, x + 10, 35);
+    this.ctx.restore();
   }
 
   /**
