@@ -89,6 +89,10 @@ export class Player {
       if (swordDistance < opponent.width / 2) {
         opponent.health = Math.max(0, opponent.health - 10); // Reduce opponent health
       }
+
+      // Play sword sound effect
+      const swordSound = new Audio("../assets/audio/sword.wav");
+      swordSound.play();
     }
   }
 
