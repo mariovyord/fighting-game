@@ -74,37 +74,21 @@ export class Game {
       }
     });
 
-    // Player 1 controls (Arrow keys)
-    if (this.keys["ArrowLeft"]) {
-      this.player2.velocity.x = -4; // Move left
-      this.player2.rotation = Math.PI; // Face left
-    } else if (this.keys["ArrowRight"]) {
-      this.player2.velocity.x = 4; // Move right
-      this.player2.rotation = 0; // Face right
-    } else {
-      this.player2.velocity.x = 0; // Stop horizontal movement
-    }
-
-    if (this.keys["ArrowUp"]) {
-      if (this.player2.position.y + this.player2.height / 2 >= this.floorY) {
-        this.player2.velocity.y = -12; // Jump
-      }
-    }
-
-    if (this.keys["ArrowDown"]) {
-      this.player2.velocity.y += 1; // Accelerate downward
-    }
-
     // Player 2 controls (WASD keys)
+    let velocityP1x = 0;
+    let rotationP1 = 0;
+
     if (this.keys["a"]) {
-      this.player1.velocity.x = -4; // Move left
-      this.player1.rotation = Math.PI; // Face left
-    } else if (this.keys["d"]) {
-      this.player1.velocity.x = 4; // Move right
-      this.player1.rotation = 0; // Face right
-    } else {
-      this.player1.velocity.x = 0; // Stop horizontal movement
+      velocityP1x = -4; // Move left
+      rotationP1 = Math.PI; // Face left
     }
+    if (this.keys["d"]) {
+      velocityP1x = 4; // Move right
+      rotationP1 = 0; // Face right
+    }
+
+    this.player1.velocity.x = velocityP1x;
+    this.player1.rotation = rotationP1;
 
     if (this.keys["w"]) {
       if (this.player1.position.y + this.player1.height / 2 >= this.floorY) {
@@ -114,6 +98,33 @@ export class Game {
 
     if (this.keys["s"]) {
       this.player1.velocity.y += 1; // Accelerate downward
+    }
+
+    // Player 1 controls (Arrow keys)
+    let velocityP2x = 0;
+    let rotationP2 = 0;
+
+    if (this.keys["ArrowLeft"]) {
+      velocityP2x = -4; // Move left
+      rotationP2 = Math.PI; // Face left
+    }
+
+    if (this.keys["ArrowRight"]) {
+      velocityP2x = 4; // Move right
+      rotationP2 = 0; // Face right
+    }
+
+    this.player2.velocity.x = velocityP2x;
+    this.player2.rotation = rotationP2;
+
+    if (this.keys["ArrowUp"]) {
+      if (this.player2.position.y + this.player2.height / 2 >= this.floorY) {
+        this.player2.velocity.y = -12; // Jump
+      }
+    }
+
+    if (this.keys["ArrowDown"]) {
+      this.player2.velocity.y += 1; // Accelerate downward
     }
 
     // Trigger sword attack
